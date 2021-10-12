@@ -13,10 +13,10 @@
  * to use in the app.
  */
 
-const flickrCallback = async (method, options) => {
+const flickrCallback = async (options) => {
 
   // Build base request for endpoint 
-  let url = `https://api.flickr.com/services/rest/?method=${method}`;
+  let url = `https://api.flickr.com/services/rest/`;
 
   // We only want to use json, and no callbacks.
   const common = {
@@ -25,14 +25,12 @@ const flickrCallback = async (method, options) => {
     nojsoncallback: 1,
   };
 
-  // Add commmon options
-  for (const key in common) {
-    url += `&${key}=${common[key]}`;
-  }
 
-  // Add specific options
-  for (const key in options) {
-    url += `&${key}=${options[key]}`;
+  // Add options to url
+  let delimiter = '?';
+  for (const [key, value] of Object.entries({ ...common, ...options })) {
+    url += `${delimiter}${key}=${value}`;
+    delimiter = '&';
   }
 
   // No error handling. Let's just assume the world is flawless! :D
@@ -45,11 +43,10 @@ const flickrCallback = async (method, options) => {
  * Get recent photos
  */
 const flickrPhotosGetRecent = async (per_page, page = 1) => {
-  return await flickrCallback("flickr.photos.getRecent", {
+  return await flickrCallback({
+    method: "flickr.photos.getRecent",
     per_page,
     page
   });
 };
-
-
 
