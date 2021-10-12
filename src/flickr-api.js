@@ -50,3 +50,27 @@ const flickrPhotosGetRecent = async (per_page, page = 1) => {
   });
 };
 
+/*
+ * Search photos by tags
+ */
+const flickrPhotosSearchByTags = async (tags, per_page = 20, page = 1) => {
+  return await flickrCallback({
+    method: "flickr.photos.search",
+    tags: tags.join(','),
+    tag_mode: 'all',
+    media: 'photos',
+    per_page,
+    page
+  });
+};
+
+/*
+ * Get photo details
+ */
+const flickrPhotosGetInfo = async (photo_id, secret) => {
+  return await flickrCallback({
+    method: "flickr.photos.getInfo",
+    photo_id,
+    secret
+  });
+};

@@ -60,23 +60,24 @@ const fillContent = content => {
   }
 };
 
-const showDetails = (e, photo) => {
-  console.log("Details: " + photo);
-}
-
+/* Render thumbnail.
+ * 
+ * Keep thumbnail faded until details have been fetched. Then unfade,
+ * add tag-info and connect to click-handler.
+ */
 const createThumb = photo => {
-
   const div = document.createElement('div');
   div.classList.add(['thumb']);
-  div.classList.add(['faded']);
+  div.classList.add(['faded']); // Start as faded
 
-  const img = document.createElement('img');
-  const imgUrl = `https://live.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}_q.jpg`;
-  img.src = imgUrl;
+  // Set background image
+  div.style.backgroundImage =
+    `url("https://live.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}_q.jpg")`;
 
-  div.style.backgroundImage = `url("${imgUrl})`;
+  // Add to main
   thumbs.appendChild(div);
 
+  // Get photo details and connect event listener for 'click'-handling.
   flickrPhotosGetInfo(photo.id, photo.secret).then(res => {
     const numTags = document.createElement('p');
     numTags.classList.add(['num-tags']);
@@ -88,29 +89,14 @@ const createThumb = photo => {
   });
 }
 
-const flickrPhotosSearchByTags = async (tags, per_page = 20, page = 1) => {
-  return await flickrCallback({
-    method: "flickr.photos.search",
-    tags: tags.join(','),
-    tag_mode: 'all',
-    media: 'photos',
-    per_page,
-    page
-  });
-};
+// Just a stub for now...
+const showDetails = (e, photo) => {
+  console.log("Details: " + photo);
+}
 
-const flickrPhotosGetInfo = async (photo_id, secret) => {
-  return await flickrCallback({
-    method: "flickr.photos.getInfo",
-    photo_id,
-    secret
-  });
-};
 
+// No intelligence in buttons for now. Just mock this!
 addTag("blue", "Skydive");
 addTag("blue", "Freefly");
-
-
 flickrPhotosSearchByTags(['Skydive', 'Freefly'], 28).then(result => fillContent(result));
 
-//flickrPhotosGetRecent(20).then(result => fillContent(result));
