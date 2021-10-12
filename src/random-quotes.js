@@ -2,13 +2,15 @@ class RandomQuotes {
   selection = [
     "Spiffyfying spiffs!",
     "Looking under a stone!",
-    "Asking the tingamajig for tags...",
+    "Asking the thingamajig for tags...",
     "Tags? TAGS? Where are they?",
     "Floofin' some floof!",
     "Ploop, snoop, Flickr-loop!",
     "All this waiting is making me sick!",
     "Tick! Tock!",
-    "Grumpifying gramps!"
+    "Grumpifying gramps!",
+    "Poking with a stick!",
+    "Gung ho!"
   ];
   last = -1;
 

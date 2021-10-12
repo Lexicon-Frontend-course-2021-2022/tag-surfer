@@ -1,5 +1,6 @@
 const tags = document.querySelector("#tags");
-const thumbs = document.querySelector("main");
+const thumbnailsWrapper = document.querySelector("#thumbnails");
+const initWrapper = document.querySelector("#init");
 
 // Reset app (Remove all tags)
 const resetTags = () => {
@@ -50,8 +51,13 @@ const fillContent = content => {
   const photos = content.photos.photo;
   let thumb;
 
+  thumbnailsWrapper.style.visibility = "visible";
+  thumbnailsWrapper.style.width = "100%";
+  initWrapper.style.visibility = "hidden";
+  initWrapper.style.width = "0";
+
   while (thumb = document.querySelector('.thumb')) {
-    thumbs.removeChild(thumb);
+    thumbnailsWrapper.removeChild(thumb);
   }
 
   for (photo of photos) {
@@ -74,7 +80,7 @@ const createThumb = photo => {
     `url("https://live.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}_q.jpg")`;
 
   // Add to main
-  thumbs.appendChild(div);
+  thumbnailsWrapper.appendChild(div);
 
   // Get photo details and connect event listener for 'click'-handling.
   flickrPhotosGetInfo(photo.id, photo.secret).then(res => {
@@ -94,8 +100,8 @@ const showDetails = (e, photo) => {
 
 
 // No intelligence in buttons for now. Just mock this!
-//addTag("blue", "Skydive");
-//addTag("blue", "Freefly");
+// addTag("blue", "Skydive");
+// addTag("blue", "Freefly");
 //flickrPhotosSearchByTags(['Skydive', 'Freefly'], 28).then(result => fillContent(result));
 
 // Get random tag
@@ -106,13 +112,22 @@ const showDetails = (e, photo) => {
 
 
 const getRandomTag = async () => {
+
+  thumbnailsWrapper.style.visibility = "hidden";
+  thumbnailsWrapper.style.width = "0";
+  initWrapper.style.visibility = "visible";
+  initWrapper.style.width = "100%";
+
+  const initText = document.querySelector("#init-text");
+  initText.innerHTML = "";
+
   let tag;
   const rq = new RandomQuotes;  // Declare outside loop
   do {
     const random = Math.ceil(Math.random() * 1000);
-    console.log(rq.get());
+    initText.innerHTML = rq.get();
     const result = await flickrPhotosGetRecent(1, random);
-    console.log(rq.get());
+    initText.innerHTML = rq.get();
     const picture = await flickrPhotosGetInfo(result.photos.photo[0].id, result.photos.photo[0].secret);
     const tags = picture.photo.tags.tag;
     if (tags.length) {
@@ -123,7 +138,7 @@ const getRandomTag = async () => {
       console.log("Got tags!: " + tagArray);
       tag = tagArray[Math.floor(Math.random() * tagArray.length)];
       addTag(tag, tag);
-      console.log(rq.get());
+      initText.innerHTML = "Loading images...";
       flickrPhotosSearchByTags([tag]).then(res => fillContent(res));
     }
   } while (!tag);

@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tag Surfer</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="spinner.css">
 </head>
 
 <body>
@@ -17,6 +18,17 @@
     <div id="tags"></div>
 
     <main>
+        <div id="thumbnails"></div>
+        <div id="init">
+            <!-- Spinner from https://loading.io/css/ -->
+            <div class="lds-ring">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+            <p id="init-text">Initializing...</p>
+        </div>
     </main>
 
     <footer>&copy; 2021 - Thomas Hellström</footer>

@@ -67,15 +67,26 @@ header {
 
 main {
     background-color: white;
-    /* display: flex;
-    flex-flow: row wrap;
-    justify-content: flex-start;
-    align-items: flex-start; */
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
     margin: 0;
-    /* gap: 8px;
-    align-content: flex-start; */
+    width: 100vw;
+}
+
+#thumbnails {
+    width: 0;
     display: grid;
     grid-template-columns: repeat(4,1fr);
+    visibility: hidden;
+}
+
+#init {
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 footer {
@@ -99,7 +110,7 @@ footer {
  }
 
  .thumb:after {
-     content: "";
+    content: "";
     padding-bottom: 100%;
  }
 
@@ -127,28 +138,3 @@ img {
 }
 
 
-@media screen and (max-width: 900px) {
-    main {
-        grid-template-columns: repeat(6,1fr);
-    }
-}
-@media screen and (max-width: 750px) {
-    main {
-        grid-template-columns: repeat(5,1fr);
-    }
-}
-@media screen and (max-width: 600px) {
-    main {
-        grid-template-columns: repeat(4,1fr);
-    }
-}
-@media screen and (max-width: 450px) {
-    main {
-        grid-template-columns: repeat(3,1fr);
-    }
-}
-@media screen and (max-width: 300px) {
-    main {
-        grid-template-columns: repeat(2,1fr);
-    }
-}
