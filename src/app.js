@@ -47,7 +47,6 @@ const addTag = (text, value) => {
 
 // (Re-)populate main area with thumbs
 const fillContent = content => {
-  console.log(content);
   const photos = content.photos.photo;
   let thumb;
 
@@ -85,7 +84,6 @@ const createThumb = photo => {
     div.appendChild(numTags);
     div.classList.remove(['faded']);
     div.addEventListener('click', e => showDetails(e, photo));
-    console.log(res)
   });
 }
 
