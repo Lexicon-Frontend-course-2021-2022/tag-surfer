@@ -94,7 +94,39 @@ const showDetails = (e, photo) => {
 
 
 // No intelligence in buttons for now. Just mock this!
-addTag("blue", "Skydive");
-addTag("blue", "Freefly");
-flickrPhotosSearchByTags(['Skydive', 'Freefly'], 28).then(result => fillContent(result));
+//addTag("blue", "Skydive");
+//addTag("blue", "Freefly");
+//flickrPhotosSearchByTags(['Skydive', 'Freefly'], 28).then(result => fillContent(result));
 
+// Get random tag
+// Flow:
+// flickrPhotosGetRecent(1, [1-1000]).then(e => console.log(e));
+
+// flickrPhotosGetRecent(1, 123).then(e => console.log(e));
+
+
+const getRandomTag = async () => {
+  let tag;
+  const rq = new RandomQuotes;  // Declare outside loop
+  do {
+    const random = Math.ceil(Math.random() * 1000);
+    console.log(rq.get());
+    const result = await flickrPhotosGetRecent(1, random);
+    console.log(rq.get());
+    const picture = await flickrPhotosGetInfo(result.photos.photo[0].id, result.photos.photo[0].secret);
+    const tags = picture.photo.tags.tag;
+    if (tags.length) {
+      const tagArray = [];
+      tags.forEach(tag => {
+        tagArray.push(tag.raw);
+      });
+      console.log("Got tags!: " + tagArray);
+      tag = tagArray[Math.floor(Math.random() * tagArray.length)];
+      addTag(tag, tag);
+      console.log(rq.get());
+      flickrPhotosSearchByTags([tag]).then(res => fillContent(res));
+    }
+  } while (!tag);
+}
+
+getRandomTag();
