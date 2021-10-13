@@ -11,10 +11,11 @@ body {
     font-family: sans-serif;
     font-size: 1rem;
 
-    grid-template-rows: 60px max-content auto 20px;
+    grid-template-rows: 60px max-content max-content auto 20px;
     grid-template-areas: 
     "header"
     "tags"
+    "new-search-bar"
     "main"
     "footer";
 
@@ -34,35 +35,6 @@ header {
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-#tags {
-    background-color: #666;
-    display: flex;
-    flex-wrap: wrap;
-    column-gap: 10px;
-    row-gap: 0px;
-    padding: 0 8px 0 8px;
-    break-inside: avoid;
-}
-
-.tag {
-    background-color: #0af;
-    color: #000;
-    margin: 8px 0 8px 0;
-    border-radius: 99px;
-    padding-left: 8px;
-    padding-right: 8px;
-    display: flex;
-    flex-wrap: nowrap;
-    justify-content: space-between;
-    align-items: center;
-    cursor: pointer;
-}
-
-.tag.reset {
-    background-color: #f33;
-    color: white;
 }
 
 
@@ -129,14 +101,6 @@ img {
     height: 20px;
 }
 
-
-.hidden {
-    visibility: hidden; 
-    display: none;
-    height: 0;
-    width: 0;
-}
-
 main {
     background-color: yellow;
     display: flex;
@@ -146,13 +110,6 @@ main {
     width: 100vw;
 }
 
-.content {
-    background-color: #f00;
-    height: 100%;
-    width: 100vw;
-    margin: 0;
-    padding: 0;
-}
 
 #details {
 
@@ -170,15 +127,141 @@ main {
     background-color: blue;
 }
 
-#welcome {
+/* ============================================================================
+ * Style start section
+ * ========================================================================== */
+#start {
     background-color: #ccc;
+    height: 100%;
 }
 
-#welcome >div > p {
-    max-width: 20%;
+#start-content {
+    height: 100%;
+    background-color: #ccc;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
 }
-.card {
+
+.start-card {
+    max-width: 30%;
     background-color: #fff;
     border-radius: 20px;
-    box-shadow: 0 0 10px black;
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    box-shadow: 0 0 30px rgba(0,0,0,0.4);
 }
+
+.start-card > h1 {
+    text-align: center;
+    text-shadow: 0 0 2px black;
+    border-radius: 20px 20px 0 0;
+    background-color: #0af;
+    margin: 0;
+    padding: 0;
+    color: #fff;
+}
+
+.start-card > div {
+    display: flex;
+    flex-direction: column;
+    padding: 0 20px 20px 20px;
+}
+
+.start-card > div > p {
+    font-size: 18px;
+}
+
+.start-button {
+    border-radius: 99px;
+    background-color: #0af;
+    border: none;
+    color: #fff;
+    text-shadow: 0 0 2px black;
+    font-size: 25px;
+    padding: 5px 0;
+    cursor: pointer;
+}
+
+.start-input {
+    border-radius: 99px;
+    border: 2px solid #0af;
+    font-size: 16px;
+    padding: 5px 20px;
+    margin-bottom: 5px;
+}
+
+/* ============================================================================
+ * Style tag section
+ * ========================================================================== */
+ #tags {
+    background-color: #666;
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 10px;
+    row-gap: 0px;
+    padding: 0 8px 0 8px;
+    break-inside: avoid;
+}
+
+.tag {
+    background-color: #0af;
+    color: #000;
+    text-shadow: 0px 0px 3px white;
+    margin: 8px 0 8px 0;
+    border-radius: 99px;
+    padding-left: 8px;
+    padding-right: 8px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+}
+
+.tag-disabled {
+    background-color: #aaa;
+    color: #444;
+}
+
+.tag.reset {
+    background-color: #f33;
+    color: white;
+}
+
+/* ============================================================================
+ * Style "new search" bar
+ * ========================================================================== */
+ #new-search-bar {
+    background-color: #0af;
+    color: #fff;
+    font-size: 40px;
+    font-weight: bolder;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    cursor: pointer;
+}
+
+/* ============================================================================
+ * Style content (content-handler-hidden tagged by content-handler.js)
+ * ========================================================================== */
+ .content-handler {
+    height: 100%;
+    width: 100vw;
+    margin: 0;
+    padding: 0;
+}
+
+.content-handler-hidden {
+    visibility: hidden; 
+    display: none;
+    height: 0;
+    width: 0;
+}
+
