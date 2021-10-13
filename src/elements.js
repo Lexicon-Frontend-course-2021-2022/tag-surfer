@@ -4,11 +4,6 @@
 
 const elements = {
 
-  // Start page
-  start: {
-    tags: document.querySelector('#start-tags'),
-    button: document.querySelector('#start-button')
-  },
 
   // Our blue search bar (New search!)
   search: document.querySelector('#new-search-bar'),

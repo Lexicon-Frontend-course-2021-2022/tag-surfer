@@ -38,13 +38,6 @@ header {
 }
 
 
-#thumbnails {
-    width: 0;
-    display: grid;
-    grid-template-columns: repeat(4,1fr);
-    visibility: hidden;
-}
-
 /* #init {
     width: 100vw;
     display: flex;
@@ -62,47 +55,8 @@ footer {
     align-items: center;
 }
 
- .thumb {
-    background-color: #ccc;
-    display: inline;
-    width: 100%;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    cursor: pointer;
-    background-size: 100%;
- }
-
- .thumb:after {
-    content: "";
-    padding-bottom: 100%;
- }
-
-.faded {
-    opacity: 20%;
-    cursor: wait;
-}
-
-img {
-    display: inline;
-}
-
-.num-tags {
-    background-color: #0af;
-    color: #000;
-    margin: 3px 3px auto auto;
-    border-radius: 99px;
-    padding-left: 8px;
-    padding-right: 8px;
-    display: flex;
-    flex-wrap: nowrap;
-    justify-content: space-between;
-    align-items: center;
-    height: 20px;
-}
-
 main {
-    background-color: yellow;
+    background-color: #444;
     display: flex;
     justify-content: center;
     align-items: flex-start;
@@ -121,10 +75,6 @@ main {
 
 #thumbnails {
     background-color: green;
-}
-
-#init {
-    background-color: blue;
 }
 
 /* ============================================================================
@@ -253,7 +203,7 @@ main {
  * ========================================================================== */
  .content-handler {
     height: 100%;
-    width: 100vw;
+    width: 100%;
     margin: 0;
     padding: 0;
 }
@@ -265,3 +215,91 @@ main {
     width: 0;
 }
 
+/* ============================================================================
+ * Style spinner content
+ * ========================================================================== */
+#spinner {
+    background-color: #ccc;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* ============================================================================
+ * Style thumbs
+ * ========================================================================== */
+ #thumbs {
+/*    background-color: #444;*/
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    height: fit-content;
+}
+
+/* Scale thumbs from < 400px to > 1950px */
+@media screen and (min-width: 300px) {#thumbs {grid-template-columns: repeat(2, 1fr)}}
+@media screen and (min-width: 450px) {#thumbs {grid-template-columns: repeat(3, 1fr)}}
+@media screen and (min-width: 600px) {#thumbs {grid-template-columns: repeat(4, 1fr)}}
+@media screen and (min-width: 750px) {#thumbs {grid-template-columns: repeat(5, 1fr)}}
+@media screen and (min-width: 900px) {#thumbs {grid-template-columns: repeat(6, 1fr)}}
+@media screen and (min-width: 1050px) {#thumbs {grid-template-columns: repeat(7, 1fr)}}
+@media screen and (min-width: 1200px) {#thumbs {grid-template-columns: repeat(8, 1fr)}}
+@media screen and (min-width: 1350px) {#thumbs {grid-template-columns: repeat(9, 1fr)}}
+@media screen and (min-width: 1500px) {#thumbs {grid-template-columns: repeat(10, 1fr)}}
+@media screen and (min-width: 1650px) {#thumbs {grid-template-columns: repeat(11, 1fr)}}
+@media screen and (min-width: 1800px) {#thumbs {grid-template-columns: repeat(12, 1fr)}}
+@media screen and (min-width: 1950px) {#thumbs {grid-template-columns: repeat(13, 1fr)}}
+
+ .thumb {
+    background-color: #ccc;
+    display: inline;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    cursor: pointer;
+    background-size: 100%;
+ }
+
+ .thumb:after {
+    content: "";
+    padding-bottom: 100%;
+ }
+
+.faded {
+    opacity: 20%;
+    cursor: wait;
+}
+
+img {
+    display: inline;
+}
+
+.num-tags {
+    background-color: #0af;
+    color: #000;
+    margin: 3px 3px auto auto;
+    border-radius: 99px;
+    padding-left: 8px;
+    padding-right: 8px;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+    height: 20px;
+}
+
+
+/* ============================================================================
+ * Thumb "More..." button
+ * ========================================================================== */
+.more-button {
+    background: #0af;
+    display: flex;
+    color: #fff;
+    font-size: 30px;
+    justify-content: center;
+    align-items: center;
+}

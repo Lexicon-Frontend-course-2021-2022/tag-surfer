@@ -1,121 +1,122 @@
-// Store our tags...
-let tagArray = {};
+class Tags {
 
-// Reset app (Remove all tags)
-const resetTags = () => {
-  elements.tags.container.childNodes.forEach(e => {
-    elements.tags.container.removeChild(e);
-  });
-}
-
-const removeTag = tag => {
-  // Remove html element
-  elements.tags.container.childNodes.forEach(e => {
-    if (e.innerText === tag)
-      elements.tags.container.removeChild(e);
-  });
-
-  // Remove tag from array
-  delete tagArray[tag];
-
-  // No tags left? Show start page
-  if (!getNumTags) {
-    showSection('start')
+  constructor() {
+    this.items = {};
+    this.callback = null;
   }
-};
 
-const getNumTags = () => {
-  return Object.keys(tagArray).length;
+  /*
+   * Add tag to object and HTML
+   */
+
+  add(tag, enabled = true) {
+
+    // Handle null value or doubles
+    if (!tag || this.items[tag]) {
+      return false;
+    }
+
+
+    // Add tag
+    const e = document.createElement('div');
+    e.classList.add('tag');
+    e.classList.add('tag-item');
+    e.innerText = tag;
+
+    if (this.callback) {
+      e.addEventListener('click', this.callback);
+      e.classList.add('clickable');
+    }
+
+    if (!enabled) {
+      e.classList.add(['tag-disabled']);
+    }
+
+    elements.tags.container.appendChild(e);
+
+    this.items[tag] = {
+      enabled,
+      e,
+      toggle() {
+        if (this.enabled) {
+          this.e.classList.add(['tag-disabled']);
+        } else {
+          this.e.classList.remove(['tag-disabled']);
+        }
+        this.enabled = !this.enabled;
+      }
+    };
+
+    return true;
+  }
+
+  /*
+   * Remove single tag from object and html
+   */
+  remove(tag) {
+    // Handle null value or doubles
+    if (!tag || !this.items[tag]) {
+      return false;
+    }
+
+    // Remove html element
+    elements.tags.container.removeChild(this.items[tag].e);
+
+    // Remove tag from array
+    delete this.items[tag];
+  }
+
+  /*
+   * Remove all tags
+   */
+  removeAll() {
+    for (const key in this.items) {
+      this.remove(key);
+    }
+  }
+
+  /*
+   * Remove disabled tags
+   */
+  removeDisabled() {
+    for (const tag in this.items) {
+      if (!this.items[tag].enabled) {
+        this.remove(tag);
+      }
+    }
+  }
+
+  /*
+   * Return list of active tags
+   */
+  list() {
+    let result = [];
+    for (const tag in this.items) {
+      if (this.items[tag].enabled) {
+        result.push(tag)
+      }
+    }
+    return result;
+  }
+
+  setClickHandler(callback) {
+    this.callback = callback;
+  }
 }
-/* 
-  
-  Tag click handler
 
-  When details is visible, switch between enabled/disabled state.
-  Else, remove tag.
+const tags = new Tags;
 
-*/
-const clickTag = e => {
+tags.setClickHandler(e => {
   const me = e.target;
   const tag = me.innerText;
 
-  if (document.querySelector('#details').classList.value.split(' ').indexOf('hidden') != -1) {
-    removeTag(tag);
+  if (!content.details.visible) {
+    tags.remove(tag);
   } else {
-    console.log("Clicked tag:", tag);
-    tagArray[tag] = !tagArray[tag];
-    if (me.classList.value.split(' ').indexOf('tag-disabled') == -1) {
-      me.classList.add('tag-disabled');
-    } else {
-      me.classList.remove('tag-disabled');
-    }
+    tags.items[tag].toggle();
   }
 
   elements.search.innerText = "New search!";
 
-};
+});
 
-
-// Create new tag item and add to list. If this is first tag, add reset.
-const addTag = (tag, isEnabled = true) => {
-
-  // Handle null value
-  if (!tag) {
-    return;
-  }
-
-  // Handle illegal values
-  // if (!verifyTag(tag)) {
-  //  return;
-  // }
-
-  // Handle doubles
-  if (tagArray[tag]) {
-    return;
-  }
-
-  tagArray[tag] = isEnabled;
-
-  // Add tag
-  const div = document.createElement('div');
-  div.classList.add(['tag']);
-  div.classList.add(['tag-item']);
-  div.innerText = tag;
-  div.dataset.tag = tag;
-
-  div.addEventListener('click', clickTag);
-
-  if (!isEnabled) {
-    div.classList.add(['tag-disabled']);
-  }
-
-  elements.tags.container.appendChild(div);
-};
-
-/*
- Remove disabled tags
- */
-const removeDisabledTags = () => {
-  for (tag in tagArray) {
-    if (!tagArray[tag]) {
-      removeTag(tag);
-    }
-  }
-}
-
-const tagsGetEnabled = () => {
-  let result = [];
-  for (tag in tagArray) {
-    if (tagArray[tag]) {
-      result.push(tag);
-    }
-  }
-  return result;
-};
-
-// document.querySelector('#new-search').addEventListener('click', e => {
-//   removeDisabledTags();
-//   if (!getNumTags()) {
-//     showSection( 'start');
-//   }
-// });

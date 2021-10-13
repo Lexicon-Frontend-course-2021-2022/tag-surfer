@@ -1,3 +1,6 @@
+/*
+ * Buttons to switch between content
+ */
 const initDebug = () => {
   const buttons = document.querySelectorAll('.debug-button');
   for (button of buttons) {
