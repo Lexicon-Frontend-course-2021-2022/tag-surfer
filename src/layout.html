@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tag Surfer</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="spinner.css">
+</head>
+
+<body>
+    <header>
+        <button class="debug-button" data-section="welcome">1</button>
+        <button class="debug-button" data-section="init">2</button>
+        <button class="debug-button" data-section="thumbnails">3</button>
+        <button class="debug-button" data-section="details">4</button>
+        <h1 class='logo'>&lt; Tag Surfer&gt;</h1>
+    </header>
+
+    <div id="tags"></div>
+
+    <main>
+        <div id="welcome" class="content">
+            <div></div>
+            <div class="card">
+                <h1>Welcome to Tag Surfer!</h1>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Omnis commodi quasi quibusdam architecto
+                    error
+                </p>
+                <button>GO!</button>
+            </div>
+            <div></div>
+        </div>
+        <div id="details" class="content hidden">
+            <img id="details-image" src="https://icatcare.org/app/uploads/2018/07/Thinking-of-getting-a-cat.png">
+        </div>
+        <div id="thumbnails" class="content hidden"></div>
+        <div id="init" class="content hidden">
+            <!-- Spinner from https://loading.io/css/ -->
+            <div class="lds-ring">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+            <p id="init-text">Initializing...</p>
+        </div>
+    </main>
+
+    <footer>&copy; 2021 - Thomas Hellström</footer>
+
+    <script src="debug.js"></script>
+    <!-- <script src="secrets.js"></script>
+    <script src="flickr-api.js"></script>
+    <script src="random-quotes.js"></script>
+    <script src="app.js"></script> -->
+
+</body>
+
+</html>

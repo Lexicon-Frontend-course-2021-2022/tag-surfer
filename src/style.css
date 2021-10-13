@@ -65,14 +65,6 @@ header {
     color: white;
 }
 
-main {
-    background-color: white;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    margin: 0;
-    width: 100vw;
-}
 
 #thumbnails {
     width: 0;
@@ -81,13 +73,13 @@ main {
     visibility: hidden;
 }
 
-#init {
+/* #init {
     width: 100vw;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-}
+} */
 
 footer {
     background-color: black;
@@ -138,3 +130,55 @@ img {
 }
 
 
+.hidden {
+    visibility: hidden; 
+    display: none;
+    height: 0;
+    width: 0;
+}
+
+main {
+    background-color: yellow;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    margin: 0;
+    width: 100vw;
+}
+
+.content {
+    background-color: #f00;
+    height: 100%;
+    width: 100vw;
+    margin: 0;
+    padding: 0;
+}
+
+#details {
+
+}
+
+#details-image {
+    width: 100%;
+}
+
+#thumbnails {
+    background-color: green;
+}
+
+#init {
+    background-color: blue;
+}
+
+#welcome {
+    background-color: #ccc;
+}
+
+#welcome >div > p {
+    max-width: 20%;
+}
+.card {
+    background-color: #fff;
+    border-radius: 20px;
+    box-shadow: 0 0 10px black;
+}

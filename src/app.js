@@ -111,6 +111,9 @@ const showDetails = (e, photo) => {
 // flickrPhotosGetRecent(1, 123).then(e => console.log(e));
 
 
+// Get a random tag by stupidly look for tags on different pictures.
+// This algo is extremely stupid and inefficient, but I don't care, because
+// it has a nice spinner while waiting! :)
 const getRandomTag = async () => {
 
   thumbnailsWrapper.style.visibility = "hidden";
@@ -122,7 +125,7 @@ const getRandomTag = async () => {
   initText.innerHTML = "";
 
   let tag;
-  const rq = new RandomQuotes;  // Declare outside loop
+  const rq = new RandomQuotes;  // Declare outside loop 
   do {
     const random = Math.ceil(Math.random() * 1000);
     initText.innerHTML = rq.get();
