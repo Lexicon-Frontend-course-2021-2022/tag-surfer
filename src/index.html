@@ -16,10 +16,31 @@
     </header>
 
     <div id="tags"></div>
+    <div id="new-search-bar"></div>
 
     <main>
-        <div id="thumbnails"></div>
-        <div id="init">
+
+        <!-- Start page -->
+        <div id="start" class="content-handler">
+            <div id="start-content">
+                <div></div>
+                <div class="start-card">
+                    <h1>Start</h1>
+                    <div>
+                        <p>Input one or more space separated tags to start from, or just leave the input empty to let
+                            the universe decide where you start!
+                        </p>
+                        <p>Good luck - Have fun!</p>
+                        <input type="text" id="start-tags" class="start-input" placeholder="tag [tag ...]">
+                        <button id='start-button' class="start-button">Surprise me!</button>
+                    </div>
+                </div>
+                <div></div>
+            </div>
+        </div>
+
+        <!-- Spinner page -->
+        <div id="spinner" class="content-handler">
             <!-- Spinner from https://loading.io/css/ -->
             <div class="lds-ring">
                 <div></div>
@@ -27,17 +48,32 @@
                 <div></div>
                 <div></div>
             </div>
-            <p id="init-text">Initializing...</p>
+            <p id="spinner-text">Searching...</p>
         </div>
+
+        <!-- Thumbnail page -->
+        <div id="thumbs" class="content-handler"></div>
+
+        <!-- Image details page -->
+        <div id="details" class="content-handler">
+            <img id="details-image" src="https://icatcare.org/app/uploads/2018/07/Thinking-of-getting-a-cat.png">
+        </div>
+
+
     </main>
 
     <footer>&copy; 2021 - Thomas Hellström</footer>
 
+    <script src="content-handler.js"></script>
+    <script src="elements.js"></script>
     <script src="secrets.js"></script>
     <script src="flickr-api.js"></script>
-    <script src="random-quotes.js"></script>
+    <script src="tag-handler.js"></script>
+    <script src="start-page.js"></script>
+    <script src="search-bar.js"></script>
+    <script src="details.js"></script>
+    <script src="thumbs.js"></script>
     <script src="app.js"></script>
-
 </body>
 
 </html>

@@ -7,7 +7,6 @@ elements.search.addEventListener('click', () => {
 
   elements.search.innerText = "";
 
-  console.log(tags.list());
   // Nothing to search for, only disabled tags left
   if (!tags.list().length) {
     content.start.input.value = '';

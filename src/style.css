@@ -1,9 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Saira+Stencil+One&display=swap');
-
 /* font-family: 'Saira Stencil One', cursive; */
-body {
+
+/* ============================================================================
+ * Style body
+ * ========================================================================== */
+ body {
     height: 100vh;
-    width: 100vw;
+    width: 100%;
     margin: 0;
     display: grid;
     grid-template-rows: auto;
@@ -21,14 +24,10 @@ body {
 
 }
 
-.logo {
-    font-family: 'Saira Stencil One';
-    margin: 0 ;
-    color: #0af;
-    text-shadow: 0px 0px 30px white;
-}
-
-header {
+/* ============================================================================
+ * Style header
+ * ========================================================================== */
+ header {
     background-color: black;
     margin: 0;
     padding: 0;
@@ -37,16 +36,19 @@ header {
     align-items: center;
 }
 
+.logo {
+    font-family: 'Saira Stencil One';
+    margin: 0 ;
+    color: #0af;
+    text-shadow: 0px 0px 30px white;
+}
 
-/* #init {
-    width: 100vw;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-} */
 
-footer {
+
+/* ============================================================================
+ * Style footer
+ * ========================================================================== */
+ footer {
     background-color: black;
     color: white;
     font-size: 14px;
@@ -55,7 +57,10 @@ footer {
     align-items: center;
 }
 
-main {
+/* ============================================================================
+ * Style main content area
+ * ========================================================================== */
+ main {
     background-color: #444;
     display: flex;
     justify-content: center;
@@ -64,30 +69,33 @@ main {
     width: 100vw;
 }
 
-
-#details {
-
-}
-
-#details-image {
+/* ============================================================================
+ * Style content sections (content-handler-hidden tagged by content-handler.js)
+ * ========================================================================== */
+ .content-handler {
+    height: 100%;
     width: 100%;
+    margin: 0;
+    padding: 0;
 }
 
-#thumbnails {
-    background-color: green;
+.content-handler-hidden {
+    visibility: hidden; 
+    display: none;
+    height: 0;
+    width: 0;
 }
 
 /* ============================================================================
  * Style start section
  * ========================================================================== */
 #start {
-    background-color: #ccc;
     height: 100%;
 }
 
 #start-content {
     height: 100%;
-    background-color: #ccc;
+    background-color: #444;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -185,7 +193,7 @@ main {
 }
 
 /* ============================================================================
- * Style "new search" bar
+ * Style "New search!" bar
  * ========================================================================== */
  #new-search-bar {
     background-color: #0af;
@@ -199,38 +207,21 @@ main {
 }
 
 /* ============================================================================
- * Style content (content-handler-hidden tagged by content-handler.js)
- * ========================================================================== */
- .content-handler {
-    height: 100%;
-    width: 100%;
-    margin: 0;
-    padding: 0;
-}
-
-.content-handler-hidden {
-    visibility: hidden; 
-    display: none;
-    height: 0;
-    width: 0;
-}
-
-/* ============================================================================
  * Style spinner content
  * ========================================================================== */
 #spinner {
-    background-color: #ccc;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    color: #fff;
+    font-size: 20px;
 }
 
 /* ============================================================================
  * Style thumbs
  * ========================================================================== */
  #thumbs {
-/*    background-color: #444;*/
     margin: 0;
     padding: 0;
     display: grid;
@@ -238,7 +229,7 @@ main {
     height: fit-content;
 }
 
-/* Scale thumbs from < 400px to > 1950px */
+/* Scale thumb layout from < 400px to > 1950px */
 @media screen and (min-width: 300px) {#thumbs {grid-template-columns: repeat(2, 1fr)}}
 @media screen and (min-width: 450px) {#thumbs {grid-template-columns: repeat(3, 1fr)}}
 @media screen and (min-width: 600px) {#thumbs {grid-template-columns: repeat(4, 1fr)}}
@@ -302,4 +293,14 @@ img {
     font-size: 30px;
     justify-content: center;
     align-items: center;
+}
+
+/* ============================================================================
+ * Style details page
+ * ========================================================================== */
+
+/* #details {} */
+
+#details-image {
+    width: 100%;
 }
