@@ -8,6 +8,10 @@ views.start.button = document.querySelector('#start-button');
 
 views.start.input.addEventListener('input', e => {
   if (e.target.value) {
+    if (e.target.value.slice(-1).toLowerCase() === ' ') {
+      tags.add(e.target.value.slice(0, -1));
+      e.target.value = null;
+    }
     views.start.button.innerText = 'Go!';
   } else {
     views.start.button.innerText = 'Surpise me!';
