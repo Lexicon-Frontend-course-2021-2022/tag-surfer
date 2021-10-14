@@ -1,12 +1,16 @@
+/* ============================================================================
+ * Details view
+ *
+ * Handles all code related to details view
+ * ========================================================================== */
+
+
 /*
- * Handle "details" view
+ * Create function to render details view
  */
-
-
-// Render details
 views.details.displayPhoto = indata => {
 
-  // Add disabled tags
+  // Add disabled tags to tag bar
   indata.tags.forEach(tag => {
     tags.add(tag, false);
   });
@@ -16,12 +20,18 @@ views.details.displayPhoto = indata => {
   views.details.show();
 }
 
-// Click handler
+/*
+ * 'click' event handler.
+ *
+ * Close details view and show thumbs instead
+ */
 views.details.self.addEventListener('click', () => {
   views.thumbs.show();
 });
 
-// Clear disabled tags when hiding details view
+/*
+ * onHide() callback (see views.js) to remove disabled tags from tag bar
+ */
 views.details.onHide = () => {
   tags.removeDisabled();
 };

@@ -1,29 +1,46 @@
-/*
+/* ============================================================================
  * Simple class to switch views.
  *
- * We simply tag views to be hidden with class 
- * "view-handler-hidden" and style this in css.
+ * We simply tag views to be hidden with class "view-handler-hidden" and style 
+ * this in css.
  * 
- * All views you want to switch between *SHOULD* have
- * the same parent, and *MUST* have class "view-handler"
- * 
- */
+ * All views you want to switch between *SHOULD* have the same parent, and 
+ * *MUST* have class "view-handler" *AND* an id.
+ * ========================================================================== */
+
 class Views {
+
   constructor() {
 
-    // Add all elements with class view-handler
+    /*
+     * Add all html elements with class "view-handler"
+     */
     document.querySelectorAll('.view-handler').forEach(self => {
 
-      self.classList.add('view-handler-hidden');
-      // Add content with an id
+      /*
+       * Only add elements with an id
+       */
       if (self.id) {
+
+        // Start off as hidden
+        self.classList.add('view-handler-hidden');
+
+        // Save this 'this' context for elements
         const that = this;
 
+        /*
+         * Create new key 'id' in object for new view
+         */
         this[self.id] = {
           self,
           visible: false,
 
-          // Show this view. Hide all others.
+          /*
+           * Call to show this view. Hide all others.
+           *
+           * ie. views.id.show();
+           * 
+           */
           show() {
             for (const key in that) {
               const s = that[key];
@@ -38,7 +55,9 @@ class Views {
             this.visible = true;
           },
 
-          // Override these to perform code when view is shown/hidden
+          /*
+           * Override these to perform code when view is shown/hidden
+           */
           onShow() { },
           onHide() { },
         };

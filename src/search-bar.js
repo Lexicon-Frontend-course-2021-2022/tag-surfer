@@ -1,6 +1,8 @@
-/*
- * Handle "New search!"
- */
+/* ============================================================================
+ * "New search!" handler.
+ *
+ * Basically just a 'click' event handler to initiate a new serch when clicked.
+ * ========================================================================== */
 
 document.querySelector('#new-search-bar').addEventListener('click', e => {
 
@@ -9,18 +11,22 @@ document.querySelector('#new-search-bar').addEventListener('click', e => {
 
   if (!tags.list().length) {
 
-    // Nothing to search for, only disabled tags left
-    // Show start view
+    /*
+     * We have no enabled tags left to search for.
+     * Show start view instead...
+     */
     tags.removeAll();
     views.start.show();
-    return;
 
   } else {
 
-    // Make new search based on current tags
+    /*
+     * Set known state and perform a new search based on enabled tags
+     */
     tags.removeDisabled();
     thumbs.removeAll();
     views.spinner.show();
+
     thumbs.search(
       {
         method: "flickr.photos.search",

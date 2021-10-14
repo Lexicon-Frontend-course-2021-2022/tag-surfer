@@ -1,15 +1,20 @@
+/* ============================================================================
+ * Tag handler
+ *
+ * Handles all code related to tags and the tag bar
+ * ========================================================================== */
 
 class Tags {
 
-  constructor(selector) {
+  constructor(selector, callback) {
     this.items = {};
-    this.callback = null;
+    this.callback = callback;
     this.container = document.querySelector(selector);
   }
 
-  /*
-   * Add tag to object and HTML
-   */
+  /* ============================================================================
+   * Add tag
+   * ========================================================================== */
 
   add(tag, enabled = true) {
 
@@ -52,9 +57,10 @@ class Tags {
     return true;
   }
 
-  /*
-   * Remove single tag from object and html
-   */
+  /* ============================================================================
+   * Remove single tag
+   * ========================================================================== */
+
   remove(tag) {
     // Handle null value or doubles
     if (!tag || !this.items[tag]) {
@@ -68,18 +74,19 @@ class Tags {
     delete this.items[tag];
   }
 
-  /*
+  /* ============================================================================
    * Remove all tags
-   */
+   * ========================================================================== */
+
   removeAll() {
     for (const key in this.items) {
       this.remove(key);
     }
   }
 
-  /*
-   * Remove disabled tags
-   */
+  /* ============================================================================
+   * Remove all disabled tags
+   * ========================================================================== */
   removeDisabled() {
     for (const tag in this.items) {
       if (!this.items[tag].enabled) {
@@ -88,9 +95,9 @@ class Tags {
     }
   }
 
-  /*
-   * Return list of active tags
-   */
+  /* ============================================================================
+   * Return list of enabled tags
+   * ========================================================================== */
   list() {
     let result = [];
     for (const tag in this.items) {
@@ -101,17 +108,23 @@ class Tags {
     return result;
   }
 
-  setClickHandler(callback) {
-    this.callback = callback;
-  }
 }
 
-const tags = new Tags('#tag-bar');
 
-tags.setClickHandler(e => {
-  const me = e.target;
-  const tag = me.innerText;
+/*
+ * Create tags object
+ *
+ * Pass in our selector and the 'click' event handler
+ */
 
+const tags = new Tags('#tag-bar', e => {
+
+  const tag = e.target.innerText;
+
+  /*
+   * Clicking in details view toggles between enabled/disables
+   * Anywhere else, tag is removed
+   */
   if (!views.details.visible) {
     tags.remove(tag);
   } else {
