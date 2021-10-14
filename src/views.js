@@ -1,8 +1,8 @@
 /* ============================================================================
  * Simple class to switch views.
  *
- * We simply tag views to be hidden with class "view-handler-hidden" and style 
- * this in css.
+ * We simply tag views to be hidden with class "hidden" and style 
+ * ".view-handler.hidden" in css.
  * 
  * All views you want to switch between *SHOULD* have the same parent, and 
  * *MUST* have class "view-handler" *AND* an id.
@@ -15,15 +15,15 @@ class Views {
     /*
      * Iterate elements with class "view-handler"
      */
-    document.querySelectorAll('.view-handler').forEach(self => {
+    document.querySelectorAll('.view-handler').forEach(e => {
 
       /*
        * Only add elements with an id
        */
-      if (self.id) {
+      if (e.id) {
 
-        // Start off as hidden
-        self.classList.add('view-handler-hidden');
+        // Start off hidden
+        e.classList.add('hidden');
 
         // Save this 'this' context for elements
         const that = this;
@@ -31,8 +31,8 @@ class Views {
         /*
          * Create new key 'id' in object for new view
          */
-        this[self.id] = {
-          self,
+        this[e.id] = {
+          e,
           visible: false,
 
           /*
@@ -44,14 +44,14 @@ class Views {
           show() {
             for (const key in that) {
               const s = that[key];
-              if (s.self !== self) {
-                s.self.classList.add('view-handler-hidden');
+              if (s.e !== e) {
+                s.e.classList.add('hidden');
                 s.visible = false;
                 s.onHide();
               }
             }
             this.onShow();
-            this.self.classList.remove('view-handler-hidden');
+            this.e.classList.remove('hidden');
             this.visible = true;
           },
 

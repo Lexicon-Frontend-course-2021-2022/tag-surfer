@@ -24,7 +24,7 @@ class Thumbs {
     e.classList.add('thumb');
     e.classList.add('faded'); // Start as faded
     e.style.backgroundImage = `url("https://live.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}_q.jpg")`;
-    views.thumbs.self.appendChild(e);
+    views.thumbs.e.appendChild(e);
 
     // Store thumb details
     this.items[key] = {
@@ -78,7 +78,7 @@ class Thumbs {
          */
 
         try {
-          views.thumbs.self.removeChild(e);
+          views.thumbs.e.removeChild(e);
         } catch (_) { }
 
       }
@@ -102,8 +102,8 @@ class Thumbs {
 
     // HACK: Remove lingering thumbs we DON'T know about.
     // Asyncronous code is quite funky! :)
-    views.thumbs.self.childNodes.forEach(e => {
-      views.thumbs.self.removeChild(e);
+    views.thumbs.e.childNodes.forEach(e => {
+      views.thumbs.e.removeChild(e);
     });
 
   }
@@ -113,7 +113,7 @@ class Thumbs {
    * ========================================================================== */
 
   remove(id) {
-    views.thumbs.self.removeChild(this.items[id].e);
+    views.thumbs.e.removeChild(this.items[id].e);
     delete this.items[id];
   };
 
@@ -195,7 +195,7 @@ class Thumbs {
     });
 
     // Add to thumbs container
-    views.thumbs.self.appendChild(e);
+    views.thumbs.e.appendChild(e);
   }
 }
 

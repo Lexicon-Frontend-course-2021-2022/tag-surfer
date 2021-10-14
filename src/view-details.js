@@ -16,7 +16,7 @@ views.details.displayPhoto = indata => {
   });
 
   // Set background image & show details
-  views.details.self.style.backgroundImage = `url('${indata.url}')`;
+  views.details.e.style.backgroundImage = `url('${indata.url}')`;
   views.details.show();
 }
 
@@ -25,7 +25,7 @@ views.details.displayPhoto = indata => {
  *
  * Close details view and show thumbs instead
  */
-views.details.self.addEventListener('click', () => {
+views.details.e.addEventListener('click', () => {
   views.thumbs.show();
 });
 
