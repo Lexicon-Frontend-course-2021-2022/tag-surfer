@@ -299,8 +299,17 @@ img {
  * Style details page
  * ========================================================================== */
 
-/* #details {} */
+#details {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url('https://live.staticflickr.com/65535/51586975479_5b243bfb5a.jpg');
+    background-repeat: no-repeat;
+    background-size: 100%;
+}
 
 #details-image {
-    width: 100%;
+    max-width: 100%;
+    height: 100%;
+    display: none;
 }
