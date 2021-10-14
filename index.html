@@ -6,8 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tag Surfer</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="spinner.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/spinner.css">
 </head>
 
 <body>
@@ -64,16 +64,27 @@
 
     <footer>&copy; 2021 - Thomas Hellström</footer>
 
-    <script src="content-handler.js"></script>
-    <script src="elements.js"></script>
-    <script src="secrets.js"></script>
-    <script src="flickr-api.js"></script>
-    <script src="tag-handler.js"></script>
-    <script src="start-page.js"></script>
-    <script src="search-bar.js"></script>
-    <script src="details.js"></script>
-    <script src="thumbs.js"></script>
-    <script src="app.js"></script>
+    <!-- Flickr API -->
+    <script src="src/secrets.js"></script>
+    <script src="src/flickr-api.js"></script>
+
+    <!-- Simple content handler -->
+    <script src="src/content-handler.js"></script>
+
+    <!-- Remove this -->
+    <script src="src/elements.js"></script>
+
+    <!-- Handle tags -->
+    <script src="src/tag-handler.js"></script>
+
+    <!-- Content pages -->
+    <script src="src/start-page.js"></script>
+    <script src="src/search-bar.js"></script>
+    <script src="src/details.js"></script>
+    <script src="src/thumbs.js"></script>
+
+    <!-- Actual app -->
+    <script src="src/app.js"></script>
 </body>
 
 </html>
