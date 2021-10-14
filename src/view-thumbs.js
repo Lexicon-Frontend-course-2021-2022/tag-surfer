@@ -6,8 +6,7 @@
 class Thumbs {
   constructor() {
     this.items = {};
-    this.search.options = null
-    this.search.callback = null; // Callback stored for handling paging of mre items
+    this.search.options = null; // Used for search paging...
   }
 
   // Add photo
@@ -34,7 +33,8 @@ class Thumbs {
 
     // Get photo details and connect event listener for 'click'-handling.
     flickrPhotosGetInfo(photo.id, photo.secret).then(res => {
-      try {
+      // Only update if image is part of current set.
+      if (key in this.items) {
         const t = this.items[key].tags;
 
         res.photo.tags.tag.forEach(e => {
@@ -57,7 +57,11 @@ class Thumbs {
         // Enable this
         e.classList.remove('faded');
         e.classList.add('clickable');
-      } catch { };
+      } else {
+        try {
+          views.thumbs.self.removeChild(e);
+        } catch (_) { }
+      }
     });
 
   }
@@ -73,6 +77,13 @@ class Thumbs {
     for (const k in this.items) {
       this.remove(k);
     }
+
+    // HACK: Remove lingering thumbs.
+    // Asyncronous code is funky! :)
+    views.thumbs.self.childNodes.forEach(e => {
+      views.thumbs.self.removeChild(e);
+    });
+
   }
 
   remove(id) {
@@ -106,9 +117,8 @@ class Thumbs {
     views.thumbs.show();
     tags.removeDisabled();
 
-    // Remove lingering "More..." buttons
-    const more = document.querySelectorAll('.more-button');
-    more.forEach(e => {
+    // Remove lingering "More..." button
+    document.querySelectorAll('.more-button').forEach(e => {
       e.parentNode.removeChild(e);
     });
 
