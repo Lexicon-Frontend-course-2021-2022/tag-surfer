@@ -41,22 +41,22 @@ class Views {
            * ie. views.id.show();
            * 
            */
-          show() {
+          show(...args) {
             for (const key in that) {
               const s = that[key];
               if (s.e !== e) {
                 s.e.classList.add('hidden');
                 s.visible = false;
-                s.onHide();
+                s.onHide(...args);
               }
             }
-            this.onShow();
+            this.onShow(...args);
             this.e.classList.remove('hidden');
             this.visible = true;
           },
 
           /*
-           * Override these to perform code when view is shown/hidden
+           * Override these to perform actions when view is shown/hidden
            */
           onShow() { },
           onHide() { },

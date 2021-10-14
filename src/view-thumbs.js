@@ -62,7 +62,7 @@ class Thumbs {
 
         // Clicking on a thumb opens details view for picture
         e.addEventListener('click', e => {
-          views.details.displayPhoto(this.items[key]);
+          views.details.show(this.items[key]);
         });
 
         // Enable thumb
