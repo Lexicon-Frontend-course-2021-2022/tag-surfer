@@ -35,8 +35,9 @@ class Thumbs {
 
     /*
      * Get photo details and connect event listener for 'click'-handling.
-    */
-
+     *
+     * This happens asynchronously and faded thumbs will unfade as responses are received.
+     */
     flickrPhotosGetInfo(photo.id, photo.secret).then(res => {
 
       // Only update if thumb is in known set of thumbs

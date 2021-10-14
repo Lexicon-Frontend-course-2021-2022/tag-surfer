@@ -20,25 +20,26 @@
 
     <main>
 
-        <!-- Start page -->
+        <!-- start veiew -->
         <div id="start" class="view-handler">
-            <div class="start-card">
+            <form class="start-card">
                 <h1>Start</h1>
                 <div>
-                    <p>Input one or more space separated tags to start from, or just leave the input empty to let
+                    <p>
+                        Input one or more space separated tags to start from, or just leave the input empty to let
                         the universe decide where you start!
                     </p>
-                    <p>Good luck - Have fun!</p>
+                    <p>
+                        Good luck - Have fun!
+                    </p>
                     <input type="text" id="start-tags" class="start-input" placeholder="tag [tag ...]">
                     <button type="submit" id='start-button' class="start-button"></button>
-
                 </div>
-            </div>
+            </form>
         </div>
 
-        <!-- Spinner page -->
+        <!-- spinner view (Spinner stolen from https://loading.io/css/) -->
         <div id="spinner" class="view-handler">
-            <!-- Spinner from https://loading.io/css/ -->
             <div class="lds-ring">
                 <div></div>
                 <div></div>
@@ -48,10 +49,10 @@
             <p id="spinner-text">Searching...</p>
         </div>
 
-        <!-- Thumbnail page -->
+        <!-- thumbs view -->
         <div id="thumbs" class="view-handler"></div>
 
-        <!-- Image details page -->
+        <!-- details view -->
         <div id="details" class="view-handler"></div>
 
 
@@ -66,13 +67,13 @@
     <!-- Simple content handler -->
     <script src="src/views.js"></script>
 
-    <!-- Handle tags -->
+    <!-- tag-bar -->
     <script src="src/tag-handler.js"></script>
 
-    <!-- Handle "New search" -->
+    <!-- new-search-bar -->
     <script src="src/search-bar.js"></script>
 
-    <!-- Content pages -->
+    <!-- Views -->
     <script src="src/view-start.js"></script>
     <script src="src/view-details.js"></script>
     <script src="src/view-thumbs.js"></script>

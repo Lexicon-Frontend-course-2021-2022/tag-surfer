@@ -13,7 +13,7 @@ class Views {
   constructor() {
 
     /*
-     * Add all html elements with class "view-handler"
+     * Iterate elements with class "view-handler"
      */
     document.querySelectorAll('.view-handler').forEach(self => {
 
