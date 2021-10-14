@@ -297,5 +297,7 @@ img {
     background-image: url('https://live.staticflickr.com/65535/51586975479_5b243bfb5a.jpg');
     background-repeat: no-repeat;
     background-size: contain;
+    background-position-x: center;
+    background-position-y: top;
 }
 
