@@ -5,6 +5,7 @@
  * ========================================================================== */
 
 class Thumbs {
+
   constructor() {
     this.items = {};
     this.search.options = null; // Used for search paging...
@@ -43,27 +44,22 @@ class Thumbs {
       // Only update if thumb is in known set of thumbs
       if (key in this.items) {
 
-        const t = this.items[key].tags;
+        const item = this.items[key];
 
-        // Only add unique tags
-        res.photo.tags.tag.forEach(e => {
-          if (tags.list().indexOf(e._content) === -1) {
-            t.push(e._content);
-          }
-        });
+        // Only add unique tags. 
+        // (Testing to see what the code looks like using &&-stringing instead of if-construct.)
+        res.photo.tags.tag.forEach(e => tags.list().indexOf(e._content) === -1 && item.tags.push(e._content));
 
         // If we have *ANY* unique tags, show on thumb
-        if (t.length) {
+        if (item.tags.length) {
           const p = document.createElement('p');
           p.classList.add('num-tags');
-          p.innerText = `+${t.length} tags`;
+          p.innerText = `+${item.tags.length} tags`;
           e.appendChild(p);
         }
 
         // Clicking on a thumb opens details view for picture
-        e.addEventListener('click', e => {
-          views.details.show(this.items[key]);
-        });
+        e.addEventListener('click', e => views.details.show(item));
 
         // Enable thumb
         e.classList.remove('faded');
@@ -77,9 +73,7 @@ class Thumbs {
          * Try to delete the element. It may, or may not, exist.
          */
 
-        try {
-          views.thumbs.e.removeChild(e);
-        } catch (_) { }
+        try { views.thumbs.e.removeChild(e); } catch (_) { }
 
       }
 
@@ -96,15 +90,11 @@ class Thumbs {
   removeAll() {
 
     // Remove all thumbs we KNOW about.
-    for (const k in this.items) {
-      this.remove(k);
-    }
+    for (const k in this.items) this.remove(k);
 
     // HACK: Remove lingering thumbs we DON'T know about.
     // Asyncronous code is quite funky! :)
-    views.thumbs.e.childNodes.forEach(e => {
-      views.thumbs.e.removeChild(e);
-    });
+    views.thumbs.e.childNodes.forEach(e => views.thumbs.e.removeChild(e));
 
   }
 
