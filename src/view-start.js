@@ -3,27 +3,27 @@
  */
 
 // Add elements specific for start page
-content.start.input = document.querySelector('#start-tags');
-content.start.button = document.querySelector('#start-button');
+views.start.input = document.querySelector('#start-tags');
+views.start.button = document.querySelector('#start-button');
 
-content.start.input.addEventListener('input', e => {
+views.start.input.addEventListener('input', e => {
   if (e.target.value) {
-    content.start.button.innerText = 'Go!';
+    views.start.button.innerText = 'Go!';
   } else {
-    content.start.button.innerText = 'Surpise me!';
+    views.start.button.innerText = 'Surpise me!';
   }
 });
 
-content.start.button.addEventListener('click', e => {
+views.start.button.addEventListener('click', e => {
   e.preventDefault();
-  if (content.start.input.value) {
-    content.start.input.value.split(' ').forEach(tag => {
+  if (views.start.input.value) {
+    views.start.input.value.split(' ').forEach(tag => {
       tags.add(tag.toLowerCase(), true);
     })
 
   }
 
-  content.spinner.show();
+  views.spinner.show();
   thumbs.clear();
 
   if (!tags.list().length) {
@@ -48,3 +48,10 @@ content.start.button.addEventListener('click', e => {
   }
 
 });
+
+// Clear search text on show
+views.start.onShow = () => {
+  console.log('onShow', this);
+  views.start.input.value = null;
+  views.start.button.innerText = 'Surprise me!';
+}

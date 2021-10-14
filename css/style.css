@@ -6,7 +6,7 @@
  * ========================================================================== */
  body {
     height: 100vh;
-    width: 100%;
+    /* width: 100%; */
     margin: 0;
     display: grid;
     grid-template-rows: auto;
@@ -70,46 +70,43 @@
 }
 
 /* ============================================================================
- * Style content sections (content-handler-hidden tagged by content-handler.js)
+ * Style views (view-handler-hidden tagged by view-handler.js)
  * ========================================================================== */
- .content-handler {
+ .view-handler {
     height: 100%;
     width: 100%;
     margin: 0;
     padding: 0;
 }
 
-.content-handler-hidden {
-    visibility: hidden; 
-    display: none;
-    height: 0;
-    width: 0;
+.view-handler-hidden {
+    visibility: hidden !important; 
+    display: none !important;
+    height: 0 !important;
+    width: 0 !important;
 }
 
 /* ============================================================================
  * Style start section
  * ========================================================================== */
 #start {
-    height: 100%;
-}
-
-#start-content {
-    height: 100%;
-    background-color: #444;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
+    margin: 0;
+    padding: 0;
+    width: fit-content;
 }
 
 .start-card {
-    max-width: 30%;
+    max-width: fit-content; 
     background-color: #fff;
     border-radius: 20px;
     display: flex;
     flex-direction: column;
     padding: 0;
+    margin: 0;
     box-shadow: 0 0 30px rgba(0,0,0,0.4);
 }
 
@@ -153,9 +150,9 @@
 }
 
 /* ============================================================================
- * Style tag section
+ * Style tag bar
  * ========================================================================== */
- #tags {
+ #tag-bar {
     background-color: #666;
     display: flex;
     flex-wrap: wrap;
@@ -182,14 +179,9 @@
     cursor: pointer;
 }
 
-.tag-disabled {
+.tag.disabled {
     background-color: #aaa;
     color: #444;
-}
-
-.tag.reset {
-    background-color: #f33;
-    color: white;
 }
 
 /* ============================================================================
@@ -300,16 +292,8 @@ img {
  * ========================================================================== */
 
 #details {
-    display: flex;
-    justify-content: center;
-    align-items: center;
     background-image: url('https://live.staticflickr.com/65535/51586975479_5b243bfb5a.jpg');
     background-repeat: no-repeat;
-    background-size: 100%;
+    background-size: contain;
 }
 
-#details-image {
-    max-width: 100%;
-    height: 100%;
-    display: none;
-}

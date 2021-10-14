@@ -24,7 +24,7 @@ class Thumbs {
       `url("https://live.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}_q.jpg")`;
 
     // Add to main
-    content.thumbs.self.appendChild(e);
+    views.thumbs.self.appendChild(e);
 
     this.items[key] = {
       e,
@@ -51,7 +51,7 @@ class Thumbs {
         }
 
         e.addEventListener('click', e => {
-          content.details.displayPhoto(this.items[key]);
+          views.details.displayPhoto(this.items[key]);
         });
 
         // Enable this
@@ -65,13 +65,13 @@ class Thumbs {
   /* 
    * Remove all thumbs
    *
-   * NOTE: This does not cancek outstanding http requests!
+   * NOTE: This does not cancel outstanding http requests!
    * 
    */
 
   clear() {
     for (const [k, v] of Object.entries(this.items)) {
-      content.thumbs.self.removeChild(v.e);
+      views.thumbs.self.removeChild(v.e);
       delete this.items[k];
     }
   }
@@ -100,7 +100,7 @@ class Thumbs {
     const result = await flickrCallback(options);
 
     // Since we're running asynchrounos, we may need to set a known state here...
-    content.thumbs.show();
+    views.thumbs.show();
     tags.removeDisabled();
 
     // Remove lingering "More..." buttons
@@ -135,7 +135,7 @@ class Thumbs {
     });
 
     // Add to main
-    content.thumbs.self.appendChild(e);
+    views.thumbs.self.appendChild(e);
 
   }
 

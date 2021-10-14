@@ -1,22 +1,26 @@
 /*
- *
+ * Handle "New search!"
  */
-elements.search = document.querySelector('#new-search-bar');
 
-elements.search.addEventListener('click', () => {
+document.querySelector('#new-search-bar').addEventListener('click', e => {
 
-  elements.search.innerText = "";
+  // Hide search bar by removing text
+  e.target.innerHTML = '';
 
-  // Nothing to search for, only disabled tags left
   if (!tags.list().length) {
-    content.start.input.value = '';
+
+    // Nothing to search for, only disabled tags left
+    // Show start view
     tags.removeAll();
-    content.start.show();
+    views.start.show();
     return;
+
   } else {
+
+    // Make new search based on current tags
     tags.removeDisabled();
     thumbs.clear();
-    content.spinner.show();
+    views.spinner.show();
     thumbs.search(
       {
         method: "flickr.photos.search",
@@ -26,6 +30,6 @@ elements.search.addEventListener('click', () => {
         per_page: 10,
       }
     );
-  }
 
+  }
 });

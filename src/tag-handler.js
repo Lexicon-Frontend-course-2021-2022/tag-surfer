@@ -1,8 +1,10 @@
+
 class Tags {
 
-  constructor() {
+  constructor(selector) {
     this.items = {};
     this.callback = null;
+    this.container = document.querySelector(selector);
   }
 
   /*
@@ -29,19 +31,19 @@ class Tags {
     }
 
     if (!enabled) {
-      e.classList.add(['tag-disabled']);
+      e.classList.add(['disabled']);
     }
 
-    elements.tags.container.appendChild(e);
+    this.container.appendChild(e);
 
     this.items[tag] = {
       enabled,
       e,
       toggle() {
         if (this.enabled) {
-          this.e.classList.add(['tag-disabled']);
+          this.e.classList.add(['disabled']);
         } else {
-          this.e.classList.remove(['tag-disabled']);
+          this.e.classList.remove(['disabled']);
         }
         this.enabled = !this.enabled;
       }
@@ -60,7 +62,7 @@ class Tags {
     }
 
     // Remove html element
-    elements.tags.container.removeChild(this.items[tag].e);
+    this.container.removeChild(this.items[tag].e);
 
     // Remove tag from array
     delete this.items[tag];
@@ -104,19 +106,20 @@ class Tags {
   }
 }
 
-const tags = new Tags;
+const tags = new Tags('#tag-bar');
 
 tags.setClickHandler(e => {
   const me = e.target;
   const tag = me.innerText;
 
-  if (!content.details.visible) {
+  if (!views.details.visible) {
     tags.remove(tag);
   } else {
     tags.items[tag].toggle();
   }
 
-  elements.search.innerText = "New search!";
+  // Add text to "New search!" bar to show it.
+  document.querySelector('#new-search-bar').innerText = "New search!";
 
 });
 

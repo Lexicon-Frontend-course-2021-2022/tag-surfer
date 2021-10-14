@@ -1,2 +1,1 @@
-
-content.start.show();
+views.start.show();
