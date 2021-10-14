@@ -32,7 +32,7 @@ views.start.button.addEventListener('click', e => {
         method: "flickr.photos.search",
         tag_mode: 'all',
         media: 'photos',
-        per_page: 25,
+        per_page: 20,
       }
     );
   } else {
@@ -42,7 +42,7 @@ views.start.button.addEventListener('click', e => {
         tags: tags.list().join(','),
         tag_mode: 'all',
         media: 'photos',
-        per_page: 25,
+        per_page: 20,
       }
     );
   }
@@ -51,7 +51,7 @@ views.start.button.addEventListener('click', e => {
 
 // Clear search text on show
 views.start.onShow = () => {
-  console.log('onShow', this);
   views.start.input.value = null;
   views.start.button.innerText = 'Surprise me!';
+  thumbs.clear();
 }

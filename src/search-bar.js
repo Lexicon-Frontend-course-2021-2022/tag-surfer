@@ -27,7 +27,7 @@ document.querySelector('#new-search-bar').addEventListener('click', e => {
         tags: tags.list().join(','),
         tag_mode: 'all',
         media: 'photos',
-        per_page: 10,
+        per_page: 20,
       }
     );
 

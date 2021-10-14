@@ -177,6 +177,7 @@
     justify-content: space-between;
     align-items: center;
     cursor: pointer;
+    font-size: 20px;
 }
 
 .tag.disabled {
@@ -262,6 +263,7 @@ img {
 
 .num-tags {
     background-color: #0af;
+    text-shadow: 0px 0px 3px white;
     color: #000;
     margin: 3px 3px auto auto;
     border-radius: 99px;
@@ -271,7 +273,7 @@ img {
     flex-wrap: nowrap;
     justify-content: space-between;
     align-items: center;
-    height: 20px;
+    font-size: 20px;
 }
 
 
