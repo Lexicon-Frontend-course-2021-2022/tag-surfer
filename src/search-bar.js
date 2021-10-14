@@ -19,7 +19,7 @@ document.querySelector('#new-search-bar').addEventListener('click', e => {
 
     // Make new search based on current tags
     tags.removeDisabled();
-    thumbs.clear();
+    thumbs.removeAll();
     views.spinner.show();
     thumbs.search(
       {

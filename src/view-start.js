@@ -24,7 +24,7 @@ views.start.button.addEventListener('click', e => {
   }
 
   views.spinner.show();
-  thumbs.clear();
+  thumbs.removeAll();
 
   if (!tags.list().length) {
     thumbs.search(
@@ -53,5 +53,5 @@ views.start.button.addEventListener('click', e => {
 views.start.onShow = () => {
   views.start.input.value = null;
   views.start.button.innerText = 'Surprise me!';
-  thumbs.clear();
+  thumbs.removeAll();
 }

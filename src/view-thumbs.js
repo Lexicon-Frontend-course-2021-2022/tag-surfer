@@ -3,11 +3,11 @@
  *
  * Handles all code related to displaying/searching thumbs etc.
  */
-
 class Thumbs {
   constructor() {
     this.items = {};
-    this.callback = null;
+    this.search.options = null
+    this.search.callback = null; // Callback stored for handling paging of mre items
   }
 
   // Add photo
@@ -69,23 +69,26 @@ class Thumbs {
    * 
    */
 
-  clear() {
-    for (const [k, v] of Object.entries(this.items)) {
-      views.thumbs.self.removeChild(v.e);
-      delete this.items[k];
+  removeAll() {
+    for (const k in this.items) {
+      this.remove(k);
     }
   }
 
+  remove(id) {
+    views.thumbs.self.removeChild(this.items[id].e);
+    delete this.items[id];
+  };
   /*
    * Search flickr for photos
    * If options are missing, get next page of last search...
    */
   async search(options = null) {
     if (!options) {
-      if (!this.options) {
+      if (!this.search.options) {
         return false;
       } else {
-        options = this.options;
+        options = this.search.options;
         options.page++;
         if (options.page > options.pages) {
           return false;
@@ -94,7 +97,7 @@ class Thumbs {
     } else {
       options.page = 1;
     }
-    this.options = options;
+    this.search.options = options;
     // Add thumbs to page
 
     const result = await flickrCallback(options);
@@ -127,18 +130,17 @@ class Thumbs {
     e.classList.add('more-button'); // Start as faded
     e.innerText = "More...";
 
-
+    // Clicking "More..." starts a new search for next page
     e.addEventListener('click', () => {
       e.innerHTML = '<div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>';
       document.removeEventListener('click', e);
       this.search();
     });
 
-    // Add to main
+    // Add to thumbs container
     views.thumbs.self.appendChild(e);
 
   }
-
 }
 
 const thumbs = new Thumbs;

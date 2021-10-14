@@ -39,8 +39,8 @@ class Views {
           },
 
           // Override these to perform code when view is shown/hidden
-          onShow() { console.log("Showing wiew:", self.id); },
-          onHide() { return; },
+          onShow() { },
+          onHide() { },
         };
       }
     });
