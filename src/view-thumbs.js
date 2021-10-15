@@ -190,3 +190,4 @@ class Thumbs {
 }
 
 const thumbs = new Thumbs;
+
