@@ -5,6 +5,7 @@
 const secrets = {
   flickr: {
     key: 'cfbccef89de23b39cbc9ecdf91c37591',
+    endpoint: 'https://api.flickr.com/services/rest/',
   },
 };
 

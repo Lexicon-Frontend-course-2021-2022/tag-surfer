@@ -16,7 +16,7 @@
 const flickrCallback = async (options) => {
 
   // Build base request for endpoint 
-  let url = `https://api.flickr.com/services/rest/`;
+  let url = secrets.flickr.endpoint;
 
   // We only want to use json, and no callbacks.
   const common = {
@@ -29,6 +29,7 @@ const flickrCallback = async (options) => {
   // Add options to url
   let delimiter = '?';
   for (const [key, value] of Object.entries({ ...common, ...options })) {
+    // This REALLY should use url-escaping, but for this simple project I won't bother. :)
     url += `${delimiter}${key}=${value}`;
     delimiter = '&';
   }

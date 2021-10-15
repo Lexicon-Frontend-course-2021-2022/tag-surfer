@@ -58,8 +58,8 @@ class Views {
           /*
            * Override these to perform actions when view is shown/hidden
            */
-          onShow() { },
-          onHide() { },
+          onShow(...args) { },
+          onHide(...args) { },
         };
       }
     });

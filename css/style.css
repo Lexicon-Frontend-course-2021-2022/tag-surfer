@@ -6,7 +6,6 @@
  * ========================================================================== */
  body {
     height: 100vh;
-    /* width: 100%; */
     margin: 0;
     display: grid;
     grid-template-rows: auto;
@@ -222,7 +221,7 @@
     height: fit-content;
 }
 
-/* Scale thumb layout from < 400px to > 1950px */
+/* Scale thumb layout from < 300px to > 1950px */
 @media screen and (min-width: 300px) {#thumbs {grid-template-columns: repeat(2, 1fr)}}
 @media screen and (min-width: 450px) {#thumbs {grid-template-columns: repeat(3, 1fr)}}
 @media screen and (min-width: 600px) {#thumbs {grid-template-columns: repeat(4, 1fr)}}
