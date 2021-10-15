@@ -74,6 +74,7 @@ const result = await flickrCallback({
 - Sometimes there are lingering thumbs left when making a new search and waiting for more images at the same time
 - When disabling tags in details view, these tags will never be associated with that thumb. This stems from a very naïve way of storing only NEW tags for each tumb.
 - The marker for new tags in thumbs view is static, so thay will not reflect the state of the tag bar
+- The app looks **REALLY** funky on Firefox! It looks ok on Chrome & Safari. I have **NO IDEA** what it looks like on other browsers.
 
 
 ### Reflections
